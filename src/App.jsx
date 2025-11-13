@@ -1,24 +1,24 @@
-import { Routes, Route } from 'react-router-dom'
-import UserList from '../Components/UserList'
-import UserForm from '../Components/UserForm'
-import UserDetails from '../Components/UserDetails'
-import './App.css'
+import { Routes, Route, Link } from "react-router-dom";
+import Home from "./Pages/Home";
+import UserForm from "./Pages/UserForm";
+import UserDetails from "./Pages/UserDetails";
 
 function App() {
   return (
-    <div className='app'>
-      <nav></nav>
-      <main className='container'>
-        <Routes>
-          <Route path="/" element={<UserList />} />
-          <Route path="/Users/new" element={<UserForm mode="create" />} />
-          <Route path="/Users/:id" element={<UserDetails />} />
-          <Route path="/Users/:id/edit" element={<UserList mode="edit" />} />
-       </Routes>
+    <div className="container">
+      <header>
+        <h2>User Management App</h2>
+        <Link to="/create" className="btn">Add User</Link>
+      </header>
 
-      </main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/create" element={<UserForm isEdit={false} />} />
+        <Route path="/edit/:id" element={<UserForm isEdit={true} />} />
+        <Route path="/user/:id" element={<UserDetails />} />
+      </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
