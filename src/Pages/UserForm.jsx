@@ -31,11 +31,12 @@ function UserForm({ isEdit }) {
     try {
       if (isEdit) {
         const check = await updateUser(id, form);
-        console.log("PUT Response:", check);
+        console.log("PUT Response:", check); // Check user update/edit 
         alert("User updated Successfully");
       } else {
-        await createUser(form);
-        alert("User created Successfully");
+      const createcheck =  await createUser(form);
+      console.log(createcheck); // Check new user created or not
+      alert("User created Successfully");
       }
       navigate("/");
     } catch {
@@ -54,7 +55,7 @@ function UserForm({ isEdit }) {
       <form onSubmit={submit}>
         <input name="name" value={form.name} onChange={Change} placeholder="Name" required />
         <input name="email" type="email" value={form.email} onChange={Change} placeholder="Email" required />
-        <input name="phone" value={form.phone} onChange={Change} placeholder="Phone" required />
+        <input name="phone" type="number" value={form.phone} onChange={Change} placeholder="Phone" required />
 
         <button type="submit">{isEdit ? "Update" : "Create"}</button>
         <button type="button" onClick={() => navigate("/")}>Cancel</button>
