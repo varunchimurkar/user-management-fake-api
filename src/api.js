@@ -1,7 +1,7 @@
 const api = "https://jsonplaceholder.typicode.com/users";
 
 const request = async (url, options = {}) => {
-const respose = await fetch(url, options);
+  const respose = await fetch(url, options);
 
   if (!respose.ok) {
     throw new Error("API ERROR");
@@ -11,39 +11,59 @@ const respose = await fetch(url, options);
 
 /*Fetch All User */
 export const fetchUser = async () => {
-  return await request(api);
+  try {
+    return await request(api);
+  } catch (error) {
+    throw error;
+  }
 };
 
 /* Fetch All User By id */
 export const fetchUserById = async (id) => {
-  return await request(`${api}/${id}`);
+  try {
+    return await request(`${api}/${id}`);
+  } catch (error) {
+    throw error;
+  }
 };
 
 /*Create New User */
 export const createUser = async (data) => {
-  return await request(api, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+  try {
+    return await request(api, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  } catch (error) {
+    throw error;
+  }
 };
 
 /*Edit-Update User */
 export const updateUser = async (id, data) => {
-  return await request(`${api}/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+  try {
+    return await request(`${api}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  } catch (error) {
+    throw error;
+  }
 };
 
 /*Delete User */
 export const deleteUser = async (id) => {
-  return await request(`${api}/${id}`, {
-    method: "DELETE",
-  });
+  try {
+    return await request(`${api}/${id}`, {
+      method: "DELETE",
+    });
+  } catch (error) {
+    throw error;
+  }
 };
