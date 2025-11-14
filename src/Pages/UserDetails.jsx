@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fetchUserById } from "../api";
-import Spinner from "../Components/Spinner";
+import Spinner from "../components/Spinner";
 
 function UserDetails() {
   const { id } = useParams();

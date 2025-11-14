@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { createUser, fetchUserById, updateUser } from "../api";
-import Spinner from "../Components/Spinner";
+import Spinner from "../components/Spinner";
 
 function UserForm({ isEdit }) {
   const { id } = useParams();
