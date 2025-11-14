@@ -14,7 +14,7 @@ function UserForm({ isEdit }) {
 
   useEffect(() => {
     if (isEdit) {
-        fetchUserById(id) 
+      fetchUserById(id)
         .then((u) => setForm({ name: u.name, email: u.email, phone: u.phone }))
         .catch(() => setError("Failed to load user"))
         .finally(() => setLoading(false));
