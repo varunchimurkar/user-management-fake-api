@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { createUser, fetchUserById, updateUser } from "../api";
 import Spinner from "../components/Spinner";
+import PhoneInput from 'react-phone-number-input'
+import 'react-phone-number-input/style.css';
 
 function UserForm({ isEdit }) {
   const { id } = useParams();
@@ -23,6 +25,10 @@ function UserForm({ isEdit }) {
 
   function Change(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
+  }
+
+   async function PhoneChange(value) {
+    setForm({ ...form, phone: value });
   }
 
   async function submit(e) {
@@ -55,7 +61,16 @@ function UserForm({ isEdit }) {
       <form onSubmit={submit}>
         <input name="name" value={form.name} onChange={Change} placeholder="Name" required />
         <input name="email" type="email" value={form.email} onChange={Change} placeholder="Email" required />
-        <input name="phone" type="number" value={form.phone} onChange={Change} placeholder="Phone" required />
+       
+        <PhoneInput
+        placeholder="Enter phone number"
+        value={form.phone}
+        onChange={PhoneChange}
+        defaultCountry="IN"
+        international
+        countryCallingCodeEditable={false}
+        required
+      />
 
         <button type="submit">{isEdit ? "Update" : "Create"}</button>
         <button type="button" onClick={() => navigate("/")}>Cancel</button>
